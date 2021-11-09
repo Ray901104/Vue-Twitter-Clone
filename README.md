@@ -1,4 +1,4 @@
-# Vue-twitter-clone
+# Vue-Twitter-Clone
 
 ## 트위터 사이트 클론코딩 프로젝트
 
