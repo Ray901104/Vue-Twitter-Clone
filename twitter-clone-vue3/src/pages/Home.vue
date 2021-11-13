@@ -1,5 +1,6 @@
 <template>
-  <div class="flex-1 border-r border-gray-100 overflow-y-auto">
+  <!-- main section -->
+        <div class="flex-1 border-r border-gray-100 overflow-y-auto">
           <div class="flex flex-col">
             <!-- page title -->
             <div class="border-b border-gray-100 px-3 py-2 font-bold text-lg">홈</div>
@@ -47,11 +48,20 @@
             </div>
           </div>
         </div>
+        <!-- trend section -->
+        <Trends></Trends>
 </template>
 
 <script>
-export default {
+import Trends from '../components/Trends.vue';
 
+export default {
+    components: {
+    Trends,
+  },
+  setup(){
+
+  },
 }
 </script>
 
