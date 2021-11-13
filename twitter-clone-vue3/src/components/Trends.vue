@@ -35,15 +35,13 @@
             </div>
             <div class="border-b border-gray-100 hover:bg-gray-100 px-4 py-2 cursor-pointer" v-for="trend in 3" :key="trend">
               <div class="flex">
-                <div>
                   <img src="http://picsum.photos/200" class="w-12 rounded-full mr-2">
-                </div>
                 <div class="flex-1 flex flex-col">
                   <div class="font-bold text-lg">문재인</div>
-                  <div class="text-gray-500">@president_of_korea</div>
+                  <div class="text-gray-500 text-sm">@pr_of_korea</div>
                 </div>
                 <div>
-                  <button class="border-2 border-primary hover:bg-blue-100 px-4 py-1 rounded-full text-primary">팔로우</button>
+                  <button class="border-2 border-primary hover:bg-blue-100 px-2 py-1 rounded-full text-primary text-sm">팔로우</button>
                 </div>
               </div>
             </div>
