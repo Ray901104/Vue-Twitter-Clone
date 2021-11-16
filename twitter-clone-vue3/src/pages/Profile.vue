@@ -17,7 +17,7 @@
           ></i>
         </button>
         <div>
-          <div class="font-extrabold text-lg">jinsyu.com</div>
+          <div class="font-extrabold text-lg">youngrae.com</div>
           <div class="text-xs text-gray">393 트윗</div>
         </div>
       </div>
@@ -60,8 +60,8 @@
       </div>
       <!-- user info -->
       <div class="mx-3 mt-2">
-        <div class="font-extrabold text-lg">jinsyu</div>
-        <div class="text-gray">@jinsyu.com</div>
+        <div class="font-extrabold text-lg">youngrae</div>
+        <div class="text-gray">@youngrae.com</div>
         <div>
           <span class="text-gray">가입일:</span>
           <span class="text-gray">2011년 10월</span>

@@ -23,8 +23,8 @@
           />
           <div>
             <div class="flex space-x-2">
-              <div class="font-bold">jinsyu.com</div>
-              <div class="text-gray-500">@jinsyu</div>
+              <div class="font-bold">youngrae.com</div>
+              <div class="text-gray-500">@youngrae</div>
               <div class="text-gray-500">1월 29일</div>
             </div>
             <div class="text-gray-500">메세지</div>
@@ -41,8 +41,8 @@
           />
           <div>
             <div class="flex space-x-2">
-              <div class="font-bold">jinsyu.com</div>
-              <div class="text-gray-500">@jinsyu</div>
+              <div class="font-bold">youngrae.com</div>
+              <div class="text-gray-500">@youngrae</div>
               <div class="text-gray-500">1월 29일</div>
             </div>
             <div class="text-gray-500">메세지</div>
@@ -60,8 +60,8 @@
             class="w-8 h-8 rounded-full mr-2 cursor-pointer"
           />
           <div>
-            <div class="font-bold text-lg">jinsyu.com</div>
-            <div class="text-sm text-gray-500">@jinsyu</div>
+            <div class="font-bold text-lg">youngrae.com</div>
+            <div class="text-sm text-gray-500">@youngrae</div>
           </div>
         </div>
         <!-- user info -->
@@ -76,8 +76,8 @@
           "
         >
           <div>
-            <span class="font-bold">jinsyu.com</span>
-            <span class="text-gray-500">@jinsyu</span>
+            <span class="font-bold">youngrae.com</span>
+            <span class="text-gray-500">@youngrae</span>
           </div>
           <div>
             <span class="font-bold mr-1">28</span
