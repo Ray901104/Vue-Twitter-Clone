@@ -1,15 +1,14 @@
 <template>
   <div class="flex flex-col items-center space-y-4 mt-10">
     <i
-      :class="`fab fa-twitter text-4xl text-primary ${
+        :class="`fab fa-twitter text-4xl text-primary ${
         loading ? 'animate-bounce' : ''
       }`"
     ></i>
     <span class="text-2xl font-bold">트위똥 회원가입</span>
     <input
-      v-model="email"
-      type="text"
-      class="
+        v-model="username"
+        class="
         rounded
         w-96
         px-4
@@ -17,12 +16,12 @@
         border border-gray-300
         focus:ring-2 focus:border-primary focus:outline-none
       "
-      placeholder="이메일"
+        placeholder="아이디"
+        type="text"
     />
     <input
-      v-model="username"
-      type="text"
-      class="
+        v-model="email"
+        class="
         rounded
         w-96
         px-4
@@ -30,12 +29,12 @@
         border border-gray-300
         focus:ring-2 focus:border-primary focus:outline-none
       "
-      placeholder="아이디"
+        placeholder="이메일"
+        type="text"
     />
     <input
-      v-model="password"
-      type="text"
-      class="
+        v-model="password"
+        class="
         rounded
         w-96
         px-4
@@ -43,11 +42,17 @@
         border border-gray-300
         focus:ring-2 focus:border-primary focus:outline-none
       "
-      placeholder="비밀번호"
+        placeholder="비밀번호"
+        type="password"
     />
-    <button
-      class="w-96 rounded bg-primary text-white py-3 hover:bg-dark"
-      @click="onRegister"
+    <button v-if="loading"
+            class="w-96 rounded bg-light text-white py-3"
+    >
+      회원가입 중입니다.
+    </button>
+    <button v-else
+            class="w-96 rounded bg-primary text-white py-3 hover:bg-dark"
+            @click="onRegister"
     >
       회원가입
     </button>
@@ -58,16 +63,46 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import {ref} from "vue";
+import {auth, USER_COLLECTION} from "../firebase";
+import {useRouter} from 'vue-router';
+
 export default {
   setup() {
     const email = ref("");
     const username = ref("");
     const password = ref("");
     const loading = ref(false);
+    const router = useRouter();
 
-    const onRegister = () => {
-      console.log(email.value, username.value, password.value);
+    const onRegister = async () => {
+      try {
+        loading.value = true;
+        const {user} = await auth.createUserWithEmailAndPassword(
+            email.value,
+            password.value
+        );
+        const doc = USER_COLLECTION.doc(user.uid);
+
+        await doc.set({
+          uid: user.uid,
+          email: email.value,
+          profile_image_url: '/profile.jpeg',
+          num_tweets: 0,
+          followers: [],
+          followings: [],
+          created_at: Date.now(),
+        });
+
+        alert("회원 가입에 성공하셨습니다. 로그인 해주세요");
+        await router.push('/login');
+
+      } catch (e) {
+        console.log("create user with email and password error", e);
+        alert(e.message);
+      } finally {
+        loading.value = false;
+      }
     };
 
     return {
