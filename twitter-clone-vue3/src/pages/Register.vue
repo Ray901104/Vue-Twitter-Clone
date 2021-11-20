@@ -33,6 +33,7 @@
         type="text"
     />
     <input
+        @keyup.enter="onRegister"
         v-model="password"
         class="
         rounded
