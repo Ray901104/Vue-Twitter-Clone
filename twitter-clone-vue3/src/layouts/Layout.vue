@@ -5,8 +5,8 @@
 <script>
 import DefaultLayout from "./DefaultLayout.vue";
 import EmptyLayout from "./EmptyLayout.vue";
-import { computed } from "vue";
-import { useRoute } from "vue-router";
+import {computed} from "vue";
+import {useRoute} from "vue-router";
 
 export default {
   components: {
@@ -19,7 +19,7 @@ export default {
 
     return {
       layout,
-    };
+    }
   },
 };
 </script>

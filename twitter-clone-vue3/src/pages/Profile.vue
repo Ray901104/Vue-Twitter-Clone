@@ -6,7 +6,7 @@
       <div class="px-3 py-1 flex border-b border-color">
         <button class="mr-4">
           <i
-            class="
+              class="
               fas
               fa-arrow-left
               text-primary
@@ -25,7 +25,7 @@
       <div class="bg-gray-300 h-40 relative flex-none">
         <!-- profile image -->
         <div
-          class="
+            class="
             w-28
             h-28
             border-4 border-white
@@ -37,15 +37,15 @@
           "
         >
           <img
-            src="http://picsum.photos/200"
-            class="rounded-full opacity-90 hover:opacity-100 cursor-pointer"
+              src="https://picsum.photos/200"
+              class="rounded-full opacity-90 hover:opacity-100 cursor-pointer"
           />
         </div>
       </div>
       <!-- profile edit button -->
       <div class="text-right mt-2 mr-2">
         <button
-          class="
+            class="
             border border-primary
             text-primary text-sm
             px-3
@@ -76,7 +76,7 @@
       <!-- tabs -->
       <div class="flex border-b border-color mt-3">
         <div
-          class="
+            class="
             py-3
             w-1/4
             text-primary
@@ -90,7 +90,7 @@
           트윗
         </div>
         <div
-          class="
+            class="
             py-3
             w-1/4
             font-bold
@@ -102,7 +102,7 @@
           트윗
         </div>
         <div
-          class="
+            class="
             py-3
             w-1/4
             font-bold
@@ -114,7 +114,7 @@
           트윗
         </div>
         <div
-          class="
+            class="
             py-3
             w-1/4
             font-bold
@@ -128,12 +128,12 @@
       </div>
       <!-- tweets -->
       <div class="overflow-y-auto">
-        <Tweet v-for="tweet in 10" :key="tweet" />
+        <Tweet v-for="tweet in 10" :key="tweet"/>
       </div>
     </div>
 
     <!-- trend section -->
-    <Trends />
+    <Trends/>
   </div>
 </template>
 

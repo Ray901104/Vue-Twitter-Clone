@@ -1,8 +1,8 @@
 <template>
-  <div class="flex h-screen container mx-auto">
+  <div class="flex h-screen container mx-auto relative">
     <!-- side section(1/4) -->
     <div
-      class="
+        class="
         w-20
         xl:w-1/4
         pt-5
@@ -19,29 +19,29 @@
         <div class="flex flex-col items-start space-y-1">
           <!-- sidemenu icons -->
           <router-link
-            :to="route.path"
-            class="
+              :to="route.path"
+              class="
               hover:text-primary hover:bg-blue-50
               px-4
               py-2
               rounded-full
               cursor-pointer
             "
-            v-for="route in routes"
-            :key="route"
+              v-for="route in routes"
+              :key="route"
           >
             <div v-if="route.meta.isMenu">
               <i :class="route.icon"></i>
               <span class="ml-5 text-xl hidden xl:inline-block">{{
-                route.title
-              }}</span>
+                  route.title
+                }}</span>
             </div>
           </router-link>
         </div>
         <!-- tweet button -->
         <div class="w-full xl:pr-3 flex justify-center">
           <button
-            class="
+              class="
               mt-3
               bg-primary
               text-white
@@ -58,9 +58,9 @@
         </div>
       </div>
       <!-- profile button -->
-      <div class="xl:pr-3 mb-3">
+      <div class="xl:pr-3 mb-3" @click="showProfileDropdown = true">
         <button
-          class="
+            class="
             hidden
             xl:flex
             mt-3
@@ -74,20 +74,20 @@
           "
         >
           <!-- 더미 이미지 -->
-          <img src="http://picsum.photos/100" class="w-10 h-10 rounded-full" />
+          <img src="https://picsum.photos/100" class="w-10 h-10 rounded-full"/>
           <div class="xl:ml-2 hidden xl:block">
             <div class="text-sm font-bold">youngrae.com</div>
             <div class="text-xs text-gray-500 text-left">@youngrae</div>
           </div>
           <!-- ml-auto로 주면 보통 끝으로 간다 -->
           <i
-            class="ml-auto fas fa-ellipsis-h fa-fw text-sm hidden xl:block"
+              class="ml-auto fas fa-ellipsis-h fa-fw text-sm hidden xl:block"
           ></i>
         </button>
         <div class="xl:hidden flex justify-center">
           <img
-            src="http://picsum.photos/100"
-            class="w-10 h-10 rounded-full cursor-pointer hover:opacity-80"
+              src="https://picsum.photos/100"
+              class="w-10 h-10 rounded-full cursor-pointer hover:opacity-80"
           />
         </div>
       </div>
@@ -96,23 +96,48 @@
     <div class="flex-1 flex h-screen">
       <router-view></router-view>
     </div>
+    <!-- profile dropdown menu -->
+    <div class="absolute bottom-20 left-10 shadow rounded-lg w-60 bg-white" v-if="showProfileDropdown"
+         @click="showProfileDropdown = false">
+      <button class="hover:bg-gray-50 border-b border-gray-100 flex p-3 w-full items-center">
+        <img src="https://picsum.photos/200" class="w-10 h-10 rounded-full"/>
+        <div class="ml-2">
+          <div class="font-bold text-sm">youngrae.com</div>
+          <div class="text-left text-gray-500 text-sm">@youngrae</div>
+        </div>
+        <i class="fas fa-check text-primary ml-auto"></i>
+      </button>
+      <button class="hover:bg-gray-50 p-3 w-full text-left text-sm" @click="onLogout">
+        @youngrae 계정에서 로그아웃
+      </button>
+
+    </div>
   </div>
 </template>
 
 <script>
-import { ref, onBeforeMount } from "vue";
+import {ref, onBeforeMount} from "vue";
 import router from "../router";
+import {auth} from "../firebase";
+import store from "../store";
 
 export default {
   components: {},
   setup() {
     const routes = ref([]);
+    const showProfileDropdown = ref(false);
+
+    const onLogout = async () => {
+      await auth.signOut();
+      store.commit("SET_USER", null);
+      await router.replace('/login');
+    }
 
     onBeforeMount(() => {
       routes.value = router.options.routes;
     });
 
-    return { routes };
+    return {routes, showProfileDropdown, onLogout};
   },
 };
 </script>
