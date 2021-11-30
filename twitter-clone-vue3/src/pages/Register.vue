@@ -86,13 +86,14 @@ export default {
         loading.value = true;
         const {user} = await auth.createUserWithEmailAndPassword(
             email.value,
-            password.value
+            password.value,
         );
         const doc = USER_COLLECTION.doc(user.uid);
 
         await doc.set({
           uid: user.uid,
           email: email.value,
+          username: username.value,
           profile_image_url: '/profile.jpeg',
           num_tweets: 0,
           followers: [],

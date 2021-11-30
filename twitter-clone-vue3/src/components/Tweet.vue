@@ -1,7 +1,7 @@
 <template>
   <!-- tweets -->
   <div
-    class="
+      class="
       flex
       px-3
       py-3
@@ -11,8 +11,8 @@
     "
   >
     <img
-      src="http://picsum.photos/200"
-      class="w-10 h-10 rounded-full hover:opacity-80 cursor-pointer"
+        :src="currentUser.profile_image_url"
+        class="w-10 h-10 rounded-full hover:opacity-80 cursor-pointer"
     />
     <div class="flex-1 flex flex-col ml-3 space-y-1">
       <div class="text-sm space-x-1">
@@ -29,7 +29,7 @@
       <!-- tweet actions -->
       <div class="flex justify-between">
         <div
-          class="
+            class="
             text-gray-500
             hover:bg-blue-50 hover:text-primary
             rounded-full
@@ -40,7 +40,7 @@
           <span class="ml-1 text-sm">1</span>
         </div>
         <div
-          class="
+            class="
             text-gray-500
             hover:bg-green-50 hover:text-green-500
             rounded-full
@@ -51,7 +51,7 @@
           <span class="ml-1 text-sm">2</span>
         </div>
         <div
-          class="
+            class="
             text-gray-500
             hover:bg-blue-50 hover:text-red-500
             rounded-full
@@ -62,7 +62,7 @@
           <span class="ml-1 text-sm">3</span>
         </div>
         <div
-          class="
+            class="
             text-gray-500
             hover:bg-blue-50 hover:text-primary
             rounded-full
@@ -77,7 +77,9 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: ['currentUser'],
+};
 </script>
 
 <style></style>

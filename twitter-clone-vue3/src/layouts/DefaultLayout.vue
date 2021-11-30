@@ -20,13 +20,14 @@
           <!-- sidemenu icons -->
           <router-link
               :to="route.path"
-              class="
+              :class="`
               hover:text-primary hover:bg-blue-50
               px-4
               py-2
               rounded-full
               cursor-pointer
-            "
+              ${router.currentRoute.value.name === route.name ? 'text-primary' : ''}
+            `"
               v-for="route in routes"
               :key="route"
           >
@@ -74,10 +75,10 @@
           "
         >
           <!-- 더미 이미지 -->
-          <img src="https://picsum.photos/100" class="w-10 h-10 rounded-full"/>
+          <img :src="currentUser.profile_image_url" class="w-10 h-10 rounded-full"/>
           <div class="xl:ml-2 hidden xl:block">
-            <div class="text-sm font-bold">youngrae.com</div>
-            <div class="text-xs text-gray-500 text-left">@youngrae</div>
+            <div class="text-sm font-bold">{{ currentUser.email }}</div>
+            <div class="text-xs text-gray-500 text-left">@{{ currentUser.username }}</div>
           </div>
           <!-- ml-auto로 주면 보통 끝으로 간다 -->
           <i
@@ -100,23 +101,22 @@
     <div class="absolute bottom-20 left-10 shadow rounded-lg w-60 bg-white" v-if="showProfileDropdown"
          @click="showProfileDropdown = false">
       <button class="hover:bg-gray-50 border-b border-gray-100 flex p-3 w-full items-center">
-        <img src="https://picsum.photos/200" class="w-10 h-10 rounded-full"/>
+        <img :src="currentUser.profile_image_url" class="w-10 h-10 rounded-full"/>
         <div class="ml-2">
-          <div class="font-bold text-sm">youngrae.com</div>
-          <div class="text-left text-gray-500 text-sm">@youngrae</div>
+          <div class="font-bold text-sm">{{ currentUser.email }}</div>
+          <div class="text-left text-gray-500 text-sm">{{ currentUser.username }}</div>
         </div>
         <i class="fas fa-check text-primary ml-auto"></i>
       </button>
       <button class="hover:bg-gray-50 p-3 w-full text-left text-sm" @click="onLogout">
-        @youngrae 계정에서 로그아웃
+        {{ currentUser.username }} 계정에서 로그아웃
       </button>
-
     </div>
   </div>
 </template>
 
 <script>
-import {ref, onBeforeMount} from "vue";
+import {ref, onBeforeMount, computed} from "vue";
 import router from "../router";
 import {auth} from "../firebase";
 import store from "../store";
@@ -126,6 +126,8 @@ export default {
   setup() {
     const routes = ref([]);
     const showProfileDropdown = ref(false);
+
+    const currentUser = computed(() => store.state.user);
 
     const onLogout = async () => {
       await auth.signOut();
@@ -137,7 +139,7 @@ export default {
       routes.value = router.options.routes;
     });
 
-    return {routes, showProfileDropdown, onLogout};
+    return {routes, showProfileDropdown, onLogout, currentUser, router};
   },
 };
 </script>
