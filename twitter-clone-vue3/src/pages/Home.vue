@@ -52,7 +52,7 @@
         </div>
       </div>
       <!-- tweets -->
-      <Tweet v-for="tweet in 5" :key="tweet" :currentUser="currentUser"/>
+      <Tweet :currentUser="currentUser" :tweet="tweet" v-for="tweet in tweets" :key="tweet.id"/>
     </div>
   </div>
   <!-- trend section -->
@@ -62,9 +62,9 @@
 <script>
 import Trends from "../components/Trends.vue";
 import Tweet from "../components/Tweet.vue";
-import {ref, computed} from "vue";
+import {ref, computed, onBeforeMount} from "vue";
 import store from "../store";
-import {TWEET_COLLECTION} from '../firebase';
+import {TWEET_COLLECTION, USER_COLLECTION} from '../firebase';
 
 export default {
   components: {
@@ -74,6 +74,33 @@ export default {
   setup() {
     const tweetBody = ref('');
     const currentUser = computed(() => store.state.user);
+    const tweets = ref([]);
+
+    onBeforeMount(() => {
+      TWEET_COLLECTION.orderBy('created_at', 'desc').onSnapshot((snapshot) => {
+        snapshot.docChanges().forEach(async (change) => {
+          let tweet = await getUserInfo(change.doc.data());
+
+          if (change.type === 'added') {
+            tweets.value.splice(change.newIndex, 0, tweet);
+          } else if (change.type === 'modified') {
+            tweets.value.splice(change.oldIndex, 1, tweet);
+          } else if (change.type === 'removed') {
+            tweets.value.splice(change.oldIndex, 1);
+          }
+        })
+      })
+    });
+
+    const getUserInfo = async (tweet) => {
+      const doc = await USER_COLLECTION.doc(tweet.uid).get();
+      tweet.profile_image_url = doc.data().profile_image_url;
+      tweet.email = doc.data().email;
+      tweet.username = doc.data().username;
+      // tweet = {...tweet, ...doc.data()};
+      console.log(tweet);
+      return tweet;
+    }
 
     const onAddTweet = async () => {
       try {
@@ -94,7 +121,7 @@ export default {
       }
     }
 
-    return {currentUser, tweetBody, onAddTweet}
+    return {currentUser, tweetBody, onAddTweet, tweets}
   },
 };
 </script>

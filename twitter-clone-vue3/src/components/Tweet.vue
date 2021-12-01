@@ -16,15 +16,14 @@
     />
     <div class="flex-1 flex flex-col ml-3 space-y-1">
       <div class="text-sm space-x-1">
-        <span class="font-bold">조국</span>
-        <span class="text-gray-500 text-xs">@patriamea</span>
+        <span class="font-bold">{{ tweet.email }}</span>
+        <span class="text-gray-500 text-xs">{{ tweet.username }}</span>
         <span>·</span>
-        <span class="text-gray-500 text-xs">7분</span>
+        <span class="text-gray-500 text-xs">{{ moment(tweet.created_at).fromNow() }}</span>
       </div>
       <!-- tweet body -->
       <div>
-        저와 제 딸은 한일병원 인턴 자원 사실을 정청래 의원이나 부인께 알린 적이
-        없습니다. [MT] 정청래 "조민 '멘탈'에 경의..아내는 약사, 의사 안뽑아" |
+        {{ tweet.tweet_body }}
       </div>
       <!-- tweet actions -->
       <div class="flex justify-between">
@@ -37,7 +36,7 @@
           "
         >
           <i class="far fa-comment"></i>
-          <span class="ml-1 text-sm">1</span>
+          <span class="ml-1 text-sm">{{ tweet.num_comments }}</span>
         </div>
         <div
             class="
@@ -48,7 +47,7 @@
           "
         >
           <i class="fas fa-retweet"></i>
-          <span class="ml-1 text-sm">2</span>
+          <span class="ml-1 text-sm">{{ tweet.num_retweets }}</span>
         </div>
         <div
             class="
@@ -59,7 +58,7 @@
           "
         >
           <i class="far fa-heart"></i>
-          <span class="ml-1 text-sm">3</span>
+          <span class="ml-1 text-sm">{{ tweet.num_likes }}</span>
         </div>
         <div
             class="
@@ -77,8 +76,13 @@
 </template>
 
 <script>
+import moment from 'moment';
+
 export default {
-  props: ['currentUser'],
+  props: ['currentUser', 'tweet'],
+  setup() {
+    return {moment};
+  }
 };
 </script>
 

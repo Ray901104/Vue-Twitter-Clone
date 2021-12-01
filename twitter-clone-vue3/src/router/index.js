@@ -93,7 +93,6 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     const currentUser = store.state.user;
-    console.log(to.matched);
     const requireAuth = to.matched.some(record => record.meta.requireAuth);
 
     // not authenticated

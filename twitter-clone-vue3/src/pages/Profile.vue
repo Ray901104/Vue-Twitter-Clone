@@ -128,7 +128,7 @@
       </div>
       <!-- tweets -->
       <div class="overflow-y-auto">
-        <Tweet v-for="tweet in 10" :key="tweet"/>
+        <Tweet v-for="tweet in tweets" :tweet="tweet" :key="tweet.id" :currentUser="currentUser"/>
       </div>
     </div>
 
