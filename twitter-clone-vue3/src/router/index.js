@@ -74,7 +74,7 @@ const routes = [
         meta: {isMenu: true, layout: "DefaultLayout", requireAuth: true},
     },
     {
-        path: "/tweet/:id",
+        path: '/tweet/:id',
         name: 'tweet',
         component: TweetPage,
         meta: {isMenu: false, layout: "DefaultLayout", requireAuth: true},
