@@ -4,13 +4,13 @@ import firebase from "firebase/compat/app";
 
 export default async (tweet) => {
     try {
-        // Already retweeted
+        // 이미 리트윗 한 상황
         if (tweet.isRetweeted) {
-            // Delete retweet doc
+            // doc에서 리트윗 데이터를 지우기
             const snapshot = await RETWEET_COLLECTION.where('from_tweet_id', '==', tweet.id)
                 .where('uid', '==', store.state.user.uid).get();
             await snapshot.docs[0].ref.delete();
-            // Decrease retweet number
+            // 리트윗 수 감소
             await TWEET_COLLECTION.doc(tweet.id).update({
                 'num_retweets': firebase.firestore.FieldValue.increment(-1),
             })

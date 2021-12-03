@@ -104,6 +104,7 @@ export default {
 
     const route = useRoute();
 
+    // 댓글 삭제
     const handleDeleteComment = async (comment) => {
       if (confirm("커멘트를 삭제하시겠습니까?")) {
         // 코멘트 삭제
@@ -121,7 +122,8 @@ export default {
         tweet.value = t;
       });
 
-      COMMENT_COLLECTION.orderBy('created_at', 'desc').onSnapshot((snapshot) => {
+      COMMENT_COLLECTION.where('from_tweet_id', '==', route.params.id)
+          .orderBy('created_at', 'desc').onSnapshot((snapshot) => {
         snapshot.docChanges().forEach(async (change) => {
           let comment = await getTweetInfo(change.doc.data(), currentUser.value)
 

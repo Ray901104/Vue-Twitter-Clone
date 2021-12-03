@@ -17,7 +17,8 @@ export default async (tweet, currentUser) => {
     }
 
     // like info
-    const likeSnapshot = await LIKE_COLLECTION.where('from_tweet_id', '==', tweet.id).where('uid', '==', currentUser.uid).get();
+    const likeSnapshot = await LIKE_COLLECTION.where('from_tweet_id', '==', tweet.id)
+        .where('uid', '==', currentUser.uid).get();
     if (likeSnapshot.empty) {
         tweet.isLiked = false;
     } else {
