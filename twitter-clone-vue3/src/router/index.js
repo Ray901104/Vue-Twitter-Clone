@@ -6,6 +6,7 @@ import Profile from "../pages/Profile.vue";
 import Register from "../pages/Register.vue";
 import Login from "../pages/Login.vue";
 import store from "../store";
+import TweetPage from "../pages/TweetPage.vue";
 
 const routes = [
     {
@@ -71,6 +72,12 @@ const routes = [
         title: "더보기",
         icon: "fas fa-ellipsis-h fa-fw text-2xl",
         meta: {isMenu: true, layout: "DefaultLayout", requireAuth: true},
+    },
+    {
+        path: "/tweet/:id",
+        name: 'tweet',
+        component: TweetPage,
+        meta: {isMenu: false, layout: "DefaultLayout", requireAuth: true},
     },
     {
         path: "/register",

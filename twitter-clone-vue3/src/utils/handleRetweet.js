@@ -7,7 +7,8 @@ export default async (tweet) => {
         // Already retweeted
         if (tweet.isRetweeted) {
             // Delete retweet doc
-            const snapshot = await RETWEET_COLLECTION.where('from_tweet_id', '==', tweet.id).where('uid', '==', store.state.user.uid).get();
+            const snapshot = await RETWEET_COLLECTION.where('from_tweet_id', '==', tweet.id)
+                .where('uid', '==', store.state.user.uid).get();
             await snapshot.docs[0].ref.delete();
             // Decrease retweet number
             await TWEET_COLLECTION.doc(tweet.id).update({
