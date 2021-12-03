@@ -204,7 +204,8 @@ export default {
         profileUser.value = doc.data();
       })
 
-      TWEET_COLLECTION.where('uid', '==', profileUID).orderBy('created_at', 'desc').onSnapshot((snapshot) => {
+      TWEET_COLLECTION.where('uid', '==', profileUID)
+          .orderBy('created_at', 'desc').onSnapshot((snapshot) => {
         snapshot.docChanges().forEach(async (change) => {
           let tweet = await getTweetInfo(change.doc.data(), currentUser.value)
 
@@ -217,7 +218,8 @@ export default {
           }
         })
       })
-      RETWEET_COLLECTION.where('uid', '==', profileUID).orderBy('created_at', 'desc').onSnapshot((snapshot) => {
+      RETWEET_COLLECTION.where('uid', '==', profileUID)
+          .orderBy('created_at', 'desc').onSnapshot((snapshot) => {
         snapshot.docChanges().forEach(async (change) => {
           const doc = await TWEET_COLLECTION.doc(change.doc.data().from_tweet_id).get();
           let tweet = await getTweetInfo(doc.data(), currentUser.value)
@@ -231,7 +233,8 @@ export default {
           }
         })
       })
-      LIKE_COLLECTION.where('uid', '==', profileUID).orderBy('created_at', 'desc').onSnapshot((snapshot) => {
+      LIKE_COLLECTION.where('uid', '==', profileUID)
+          .orderBy('created_at', 'desc').onSnapshot((snapshot) => {
         snapshot.docChanges().forEach(async (change) => {
           const doc = await TWEET_COLLECTION.doc(change.doc.data().from_tweet_id).get();
           let tweet = await getTweetInfo(doc.data(), currentUser.value)

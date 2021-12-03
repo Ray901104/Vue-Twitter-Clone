@@ -44,7 +44,7 @@
             <input @change="previewProfileImage" type="file" accept="image/*" id="ProfileImageInput" class="hidden"/>
           </div>
         </div>
-        <!-- profile botton -->
+        <!-- profile edit -->
         <div class="flex flex-col p-2">
           <div
               class="mx-2 my-1 px-2 py-1 text-gray border border-gray-200 rounded hover:border-primary hover:text-primary">
@@ -70,7 +70,6 @@
 </template>
 <script>
 import {ref, computed} from "vue";
-import addTweet from "../utils/addTweet";
 import store from "../store";
 import {storage, USER_COLLECTION} from "../firebase";
 
@@ -83,16 +82,6 @@ export default {
     const profileImageData = ref(null);
     const backgroundImage = ref(null);
     const backgroundImageData = ref(null);
-
-    const onAddTweet = async () => {
-      try {
-        await addTweet(tweetBody.value, currentUser.value);
-        tweetBody.value = '';
-        emit('close-modal');
-      } catch (e) {
-        console.log('on add tweet error on homepage:', e)
-      }
-    }
 
     const onChangeBackgroundImage = () => {
       document.getElementById('backgroundImageInput').click();
@@ -160,7 +149,6 @@ export default {
 
     return {
       tweetBody,
-      onAddTweet,
       currentUser,
       onChangeBackgroundImage,
       onChangeProfileImage,
