@@ -69,10 +69,10 @@ export default {
         // 최근 일주일 간의 트윗만 가져오기 위해 설정할 변수
         const dateFrom = Date.now() - (60 * 60 * 24 * 7 * 1000);
         const snapshot = await TWEET_COLLECTION.where('created_at', '>', dateFrom).where('uid', '==', following).orderBy('created_at', 'desc').get();
-        snapshot.docs.forEach(async (doc) => {
+        for (const doc of snapshot.docs) {
           let tweet = await getTweetInfo(doc.data(), currentUser.value);
           notifications.value.push(tweet);
-        })
+        }
       })
     })
 
