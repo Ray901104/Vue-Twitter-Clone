@@ -4,9 +4,9 @@
     <!-- tweet search input -->
     <div class="relative mb-5">
       <input
-        placeholder="트위터 검색"
-        type="text"
-        class="
+          placeholder="트위터 검색"
+          type="text"
+          class="
           pl-12
           rounded-full
           w-full
@@ -21,7 +21,7 @@
     <!-- trend for me -->
     <div class="w-full rounded-xl bg-gray-50 flex flex-col">
       <div
-        class="
+          class="
           flex
           items-center
           justify-between
@@ -32,7 +32,7 @@
       >
         <span class="text-lg font-bold">나를 위한 트렌드</span>
         <i
-          class="
+            class="
             text-center
             fas
             fa-cog
@@ -44,15 +44,15 @@
         ></i>
       </div>
       <div
-        class="
+          class="
           border-b border-gray-100
           hover:bg-gray-100
           px-4
           py-2
           cursor-pointer
         "
-        v-for="trend in 3"
-        :key="trend"
+          v-for="trend in 3"
+          :key="trend"
       >
         <div class="flex">
           <div class="flex-1 flex flex-col">
@@ -70,30 +70,30 @@
     <!-- follow recommand -->
     <div class="w-full rounded-xl bg-gray-50 flex flex-col mt-5">
       <div
-        class="items-center justify-between px-3 py-3 border-b border-gray-100"
+          class="items-center justify-between px-3 py-3 border-b border-gray-100"
       >
         <span class="text-lg font-bold">팔로우 추천</span>
       </div>
       <div
-        class="
+          class="
           border-b border-gray-100
           hover:bg-gray-100
           px-4
           py-2
           cursor-pointer
         "
-        v-for="trend in 3"
-        :key="trend"
+          v-for="trend in 3"
+          :key="trend"
       >
         <div class="flex">
-          <img src="http://picsum.photos/200" class="w-12 rounded-full mr-2" />
+          <img src="https://picsum.photos/200" class="w-12 rounded-full mr-2"/>
           <div class="flex-1 flex flex-col">
-            <div class="font-bold text-lg">문재인</div>
-            <div class="text-gray-500 text-sm">@pr_of_korea</div>
+            <div class="font-bold text-lg">모하메드 살라</div>
+            <div class="text-gray-500 text-sm">@salah</div>
           </div>
           <div>
             <button
-              class="
+                class="
                 border-2 border-primary
                 hover:bg-blue-100
                 px-2
